@@ -10,6 +10,14 @@ namespace Statki_projekt
     {
         static void Main(string[] args)
         {
+            Tablica tablica = new Tablica();
+
+            tablica.Dodaj(tablica.Plansza, 1, 1, 0, 3);
+            tablica.pokaz(tablica.Plansza);
+
+            Console.ReadKey();
+
         }
+        
     }
 }
