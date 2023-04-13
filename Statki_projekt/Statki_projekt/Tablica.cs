@@ -10,13 +10,6 @@ namespace Statki_projekt
     {
         public Tablica() { }
         
-        public int[,] Plansza = new int[5,5];
-
-        public void uzytkownik(List<int[,]> uzytk)
-        {
-            uzytk.Add(Plansza);
-        }
-
         public void Dodaj(int[,] plansza, Statki s)
         {
             
@@ -25,21 +18,33 @@ namespace Statki_projekt
                 plansza[s.statekwsp[0, i] - 1, s.statekwsp[0, i+1] - 1] = 1;
                 
             }
+            
             for (int i = 0; i < 4; i+=2)
             {
                 plansza[s.statekwsp[1, i] - 1, s.statekwsp[1, i + 1] - 1] = 1;
 
+            }
+            if (s.statekwsp[1, 1] != s.statekwsp[1, 3])
+            {
+                for (int i = 0; i < 4; i += 2)
+                {
+                    for (int a = -1; a <= 2; a++)
+                    {
+                        for (int j = -1; j < 2; j++)
+                        {
+                            if(plansza[s.statekwsp[1, i]+j, s.statekwsp[1, i]+a]==0)
+                                plansza[s.statekwsp[1, i] + j, s.statekwsp[1, i] + a] = -1;
+                        }
+                    }
+
+                }
+                
             }
             for (int i = 0; i < 6; i += 2)
             {
                 plansza[s.statekwsp[2, i] - 1, s.statekwsp[2, i + 1] - 1] = 1;
 
             }
-
-
-
-
-
         }
             public void pokaz(int[,] plansza)
         {
@@ -51,14 +56,30 @@ namespace Statki_projekt
                     
                     if(plansza[i, j] == 0)
                         Console.Write('-');
+                    else if (plansza[i, j] == -1)
+                        Console.Write('o');
                     else
+                    {
                         Console.Write('+');
+                    }
 
 
 
 
                 }
                 Console.WriteLine();
+            }
+        }
+        public void strzal(int[,] strzal, int[,] plansza,int x, int y)
+        {
+            if (strzal[x, y] == 0)
+            {
+                if (plansza[x, y] != 0)
+                {
+                    strzal[x, y] = 1;
+                    Console.WriteLine("trafiony");
+                }
+                
             }
         }
     }

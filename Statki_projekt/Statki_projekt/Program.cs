@@ -16,6 +16,7 @@ namespace Statki_projekt
 
             t.Dodaj(u.plansza, new Statki());
             t.pokaz(u.plansza);
+            t.strzal(u.strzaly, u.plansza, 0, 0);
             Console.ReadKey();
 
         }
