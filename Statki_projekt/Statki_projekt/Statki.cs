@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -8,56 +9,101 @@ namespace Statki_projekt
 {
     internal class Statki
     {
-        int[] statek1wsp = new int[2];
-        int[] statek2wsp = new int[4];
-        int[] statek3wsp = new int[6];
-        int pionpoziom = 0;
-
-        public Statki() { }
-        public Statki(int[] statek1wsp, int[] statek2wsp, int[] statek3wsp)
+        public int[,] statekwsp = new int[3,6];
+        int pionpoziom;
+        public Statki()
         {
-            Console.Write("Podaj współrzędne 1 statku o 1 polu: ");
-            statek1wsp[0] = int.Parse(Console.ReadLine());
-            statek1wsp[1] = int.Parse(Console.ReadLine());
-
-            Console.WriteLine("Czy statek 2 o 2 polach ma być w pionie czy w poziomie? \n1. Pion; \n2.Poziom;");
-            pionpoziom = int.Parse(Console.ReadLine());
-
-            Console.Write("Podaj współrzędne statku 2: ");
-            statek2wsp[0] = int.Parse(Console.ReadLine());
-            statek2wsp[1] = int.Parse(Console.ReadLine());
-            
-            if(pionpoziom == 1)
+            bool prawidlowo = true;
+            do
             {
-                statek2wsp[2] = statek2wsp[0] + 1;
-                statek2wsp[3] = statek2wsp[1];
-            }
-            else
-            {
-                statek2wsp[2] = statek2wsp[0];
-                statek2wsp[3] = statek2wsp[1] + 1;
-            }
-            Console.WriteLine("Czy statek 3 o 3 polach ma być w pionie czy w poziomie? \n1. Pion; \n2.Poziom;");
-            pionpoziom = int.Parse(Console.ReadLine());
+                try
+                {
+                    Console.Clear();
+                    Console.WriteLine("Podaj współrzędne statku o 1 polu: ");
+                    statekwsp[0, 0] = int.Parse(Console.ReadLine());
+                    statekwsp[0, 1] = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Podaj współrzędne 3 statku o 3 polach: ");
-            statek3wsp[0] = int.Parse(Console.ReadLine());
-            statek3wsp[1] = int.Parse(Console.ReadLine());
+                    for (int i = 0; i < 2; i++)
+                    {
+                        if (statekwsp[0, i] > 5 || statekwsp[0, i] < 1)
+                        {
+                            throw new Blad("Podałeś złe liczby! Twoje statki wychodzą poza planszę");
+                        }
+                    }
 
-            if (pionpoziom == 1)
-            {
-                statek3wsp[2] = statek3wsp[0] + 1;
-                statek3wsp[3] = statek3wsp[1];
-                statek3wsp[4] = statek3wsp[2] + 1;
-                statek3wsp[5] = statek3wsp[3];
-            }
-            else
-            {
-                statek3wsp[2] = statek3wsp[0];
-                statek3wsp[3] = statek3wsp[1] + 1;
-                statek3wsp[4] = statek3wsp[2];
-                statek3wsp[5] = statek3wsp[3] + 1;
-            }
+                    Console.WriteLine("Jak położony ma być statek o 2 polach? \n1. Pion; \n2. Poziom;");
+                    pionpoziom = int.Parse(Console.ReadLine());
+                    if (pionpoziom == 1 || pionpoziom == 2) { }
+                    else
+                        throw new Blad("Co mam zrobić?! Podałeś złą liczbę! Zdecyduj: Pion czy Poziom???");
+
+                    Console.WriteLine("Podaj współrzędne tego statku: ");
+                    statekwsp[1, 0] = int.Parse(Console.ReadLine());
+                    statekwsp[1, 1] = int.Parse(Console.ReadLine());
+
+                    if (pionpoziom == 1)
+                    {
+                        statekwsp[1, 2] = statekwsp[1, 0] + 1;
+                        statekwsp[1, 3] = statekwsp[1, 1];
+                    }
+                    else
+                    {
+                        statekwsp[1, 2] = statekwsp[1, 0];
+                        statekwsp[1, 3] = statekwsp[1, 1] + 1;
+                    }
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (statekwsp[1, i] > 5 || statekwsp[1, i] < 1)
+                        {
+                            throw new Blad("Podałeś złe liczby! Twoje statki wychodzą poza planszę");
+                        }
+                    }
+
+                    Console.WriteLine("Jak położony ma być statek o 3 polach? \n1. Pion; \n2. Poziom;");
+                    pionpoziom = int.Parse(Console.ReadLine());
+                    if (pionpoziom == 1 || pionpoziom == 2) { }
+                    else
+                        throw new Blad("Co mam zrobić?! Podałeś złą liczbę! Zdecyduj: Pion czy Poziom???");
+
+                    Console.WriteLine("Podaj współrzędne tego statku: ");
+                    statekwsp[2, 0] = int.Parse(Console.ReadLine());
+                    statekwsp[2, 1] = int.Parse(Console.ReadLine());
+
+                    if (pionpoziom == 1)
+                    {
+                        statekwsp[2, 2] = statekwsp[2, 0] + 1;
+                        statekwsp[2, 3] = statekwsp[2, 1];
+                        statekwsp[2, 4] = statekwsp[2, 2] + 1;
+                        statekwsp[2, 5] = statekwsp[2, 3];
+                    }
+                    else
+                    {
+                        statekwsp[2, 2] = statekwsp[2, 0];
+                        statekwsp[2, 3] = statekwsp[2, 1];
+                        statekwsp[2, 4] = statekwsp[2, 2];
+                        statekwsp[2, 5] = statekwsp[2, 3];
+                    }
+                    for (int i = 0; i < 6; i++)
+                    {
+                        if (statekwsp[2, i] > 5 || statekwsp[2, i] < 1)
+                        {
+                            throw new Blad("Podałeś złe liczby! Twoje statki wychodzą poza planszę");
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                    prawidlowo = false;
+                    Console.ReadKey();
+                }
+
+            } while (!prawidlowo);
         }
+    }
+    class Blad : Exception 
+    {
+        public Blad(string msg) : base(msg) { }
     }
 }
