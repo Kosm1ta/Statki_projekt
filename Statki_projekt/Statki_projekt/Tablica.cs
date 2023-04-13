@@ -9,36 +9,39 @@ namespace Statki_projekt
     internal class Tablica
     {
         public Tablica() { }
-        Statki s = new Statki();
+        
         public int[,] Plansza = new int[5,5];
 
-        public void Dodaj()
+        public void uzytkownik(List<int[,]> uzytk)
         {
-           
+            uzytk.Add(Plansza);
+        }
+
+        public void Dodaj(int[,] plansza, Statki s)
+        {
             
-            for (int i = 0; i < s.statek2wsp.Length - 1; i+=2)
+            for (int i = 0; i < 1; i++)
             {
-
-                Plansza[s.statek2wsp[i], s.statek2wsp[i+1]] = 1;
+                plansza[s.statekwsp[0, i] - 1, s.statekwsp[0, i+1] - 1] = 1;
+                
+            }
+            for (int i = 0; i < 4; i+=2)
+            {
+                plansza[s.statekwsp[1, i] - 1, s.statekwsp[1, i + 1] - 1] = 1;
 
             }
-            for (int i = 0; i < s.statek1wsp.Length - 1; i += 2)
+            for (int i = 0; i < 6; i += 2)
             {
-
-                Plansza[s.statek1wsp[i], s.statek1wsp[i + 1]] = 1;
+                plansza[s.statekwsp[2, i] - 1, s.statekwsp[2, i + 1] - 1] = 1;
 
             }
-            for (int i = 0; i < s.statek3wsp.Length - 1; i += 2)
-            {
 
-                Plansza[s.statek3wsp[i], s.statek3wsp[i + 1]] = 1;
 
-            }
 
 
 
         }
-        public void pokaz(int[,] plansza)
+            public void pokaz(int[,] plansza)
         {
             for (int i = 0; i < 5; i++)
             {
