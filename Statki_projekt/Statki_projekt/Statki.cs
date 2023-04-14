@@ -79,9 +79,12 @@ namespace Statki_projekt
                     else
                     {
                         statekwsp[2, 2] = statekwsp[2, 0];
-                        statekwsp[2, 3] = statekwsp[2, 1];
+
+                        statekwsp[2, 3] = statekwsp[2, 1] + 1;
                         statekwsp[2, 4] = statekwsp[2, 2];
-                        statekwsp[2, 5] = statekwsp[2, 3];
+                        statekwsp[2, 5] = statekwsp[2, 3] + 1;
+
+
                     }
                     for (int i = 0; i < 6; i++)
                     {
