@@ -18,28 +18,28 @@ namespace Statki_projekt
             Tablica t = new Tablica();
             Uzytkownicy u = new Uzytkownicy();
 
-            t.Dodaj(u.plansza, new Statki());
+            t.Dodaj(u.plansza, 1, 1, 2, 0);
             t.pokaz(u.plansza);
-            t.strzal(u.strzaly, u.plansza, 0, 0);
+            //t.strzal(u.strzaly, u.plansza, 0, 0);
             Console.ReadKey();
 
 
-            Statki statki = new Statki();
+           
 
-            for (int i = 0; i < 2; i++) 
-            {
-                Console.Write(statki.statekwsp[0,i] + ", ");
-            }
-            Console.WriteLine();
-            for (int i = 0; i < 4; i++)
-            {
-                Console.Write(statki.statekwsp[1, i] + ", ");
-            }
-            Console.WriteLine();
-            for (int i = 0; i < 6; i++)
-            {
-                Console.Write(statki.statekwsp[2, i] + ", ");
-            }
+            //for (int i = 0; i < 2; i++) 
+            //{
+            //    Console.Write(statki.statekwsp[0,i] + ", ");
+            //}
+            //Console.WriteLine();
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    Console.Write(statki.statekwsp[1, i] + ", ");
+            //}
+            //Console.WriteLine();
+            //for (int i = 0; i < 6; i++)
+            //{
+            //    Console.Write(statki.statekwsp[2, i] + ", ");
+            //}
             Console.WriteLine();
 
             Console.ReadKey();
