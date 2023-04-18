@@ -10,7 +10,7 @@ namespace Statki_projekt
     {
         public Tablica() { }
         
-        public void Dodaj(int[,] plansza, int x, int y, int statek, int kierunek)
+        public void Dodaj(int[,] plansza, int x, int y, int statek, int kierunek,Uzytkownicy u)
         {
             
             if(kierunek == 0)
@@ -32,6 +32,7 @@ namespace Statki_projekt
                             }
                         }
                     }
+                    u.Statki.Add(new Statki(x, y, kierunek));
                 }
                
             }
@@ -60,7 +61,7 @@ namespace Statki_projekt
             
         }
             public void pokaz(int[,] plansza)
-        {
+            {
             for (int i = 0; i < 5; i++)
             {
                 for (int j = 0; j < 5; j++)

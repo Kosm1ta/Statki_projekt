@@ -9,9 +9,9 @@ namespace Statki_projekt
 {
     internal class Statki
     {
-        int X;
-        int Y;
-        int Kierunek;
+        public int X;
+        public int Y;
+        public int Kierunek;
         public Statki(int x, int y, int kierunek) { 
             X = x;
             Y = y;

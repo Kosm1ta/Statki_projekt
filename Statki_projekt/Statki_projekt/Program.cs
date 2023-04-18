@@ -18,19 +18,31 @@ namespace Statki_projekt
             Tablica t = new Tablica();
             
             List<Uzytkownicy> gracze = new List<Uzytkownicy>() { new Uzytkownicy(new int[5, 5], new int[5, 5], new List<Statki>()), new Uzytkownicy(new int[5, 5], new int[5, 5], new List<Statki>())};
-            for (int i = 1; i <= 3; i++) {
-                Console.WriteLine("Statek: " + i);
-                Console.WriteLine("Podaj x:");
-                int x = int.Parse(Console.ReadLine());
-                Console.WriteLine("Podaj y:");
-                int y = int.Parse(Console.ReadLine());
+            
+            
+            for(int j = 1; j <= 2; j++) { 
+                for (int i = 1; i <= 3; i++) {
+                    Console.WriteLine("Gracz: " + j);
+                    Console.WriteLine("\nStatek: " + i);
+                    Console.WriteLine("Podaj x:");
+                    int x = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj y:");
+                    int y = int.Parse(Console.ReadLine());
+
+                    if (i == 1)
+                        t.Dodaj(gracze[j].Plansza, x, y, i, 0, gracze[j]);
+                    else{
+                        Console.WriteLine("Podaj kierunek:");
+                        int kierunek = int.Parse(Console.ReadLine());
+                        t.Dodaj(gracze[j].Plansza, x, y, i, kierunek, gracze[j]);
+                    }
+                    
+                 Console.Clear();
+                t.pokaz(gracze[j].Plansza);
+                }
                 
-                Console.WriteLine("Podaj kierunek:");
-                int kierunek = int.Parse(Console.ReadLine());
-                t.Dodaj(gracze[0].Plansza, x, y, i, kierunek);
-                Console.Clear();
-                t.pokaz(gracze[0].Plansza);
             }
+
             Console.Clear();
             t.pokaz(gracze[0].Plansza);
             //t.strzal(u.strzaly, u.plansza, 0, 0);

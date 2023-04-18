@@ -9,7 +9,6 @@ namespace Statki_projekt
     internal class Uzytkownicy
     {
         public int[,] Plansza;
-        
         public List<Statki> Statki;
         public int[,] Strzaly;
         
