@@ -10,14 +10,14 @@ namespace Statki_projekt
     {
         public int[,] Plansza;
         
-
+        public List<Statki> Statki;
         public int[,] Strzaly;
         
        
-        public Uzytkownicy(int[,] plansza, int[,] strzaly) {
+        public Uzytkownicy(int[,] plansza, int[,] strzaly, List<Statki> statki) {
             Plansza = plansza;
             Strzaly = strzaly;
-
+            Statki = statki;
         }
         
     }

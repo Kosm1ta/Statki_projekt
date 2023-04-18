@@ -9,13 +9,16 @@ namespace Statki_projekt
 {
     internal class Statki
     {
-        public int[,] statekwsp = new int[3,2];
+        int X;
+        int Y;
+        int Kierunek;
+        public Statki(int x, int y, int kierunek) { 
+            X = x;
+            Y = y;
+            Kierunek = kierunek;
+        } 
         
-        public Statki(int x, int y, int statek)
-        {
-            statekwsp[statek,0] = x;
-            statekwsp[statek,1] = y;
-        }
+        
     }
     
 }

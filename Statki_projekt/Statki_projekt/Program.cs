@@ -16,8 +16,8 @@ namespace Statki_projekt
         {
 
             Tablica t = new Tablica();
-            Uzytkownicy u = new Uzytkownicy(new int[5,5], new int[5,5]);
-            Uzytkownicy u2 = new Uzytkownicy(new int[5, 5], new int[5, 5]);
+            
+            List<Uzytkownicy> gracze = new List<Uzytkownicy>() { new Uzytkownicy(new int[5, 5], new int[5, 5], new List<Statki>()), new Uzytkownicy(new int[5, 5], new int[5, 5], new List<Statki>())};
             for (int i = 1; i <= 3; i++) {
                 Console.WriteLine("Statek: " + i);
                 Console.WriteLine("Podaj x:");
@@ -27,12 +27,12 @@ namespace Statki_projekt
                 
                 Console.WriteLine("Podaj kierunek:");
                 int kierunek = int.Parse(Console.ReadLine());
-                t.Dodaj(u.Plansza, x, y, i, kierunek);
+                t.Dodaj(gracze[0].Plansza, x, y, i, kierunek);
                 Console.Clear();
-                t.pokaz(u.Plansza);
+                t.pokaz(gracze[0].Plansza);
             }
             Console.Clear();
-            t.pokaz(u.Plansza);
+            t.pokaz(gracze[0].Plansza);
             //t.strzal(u.strzaly, u.plansza, 0, 0);
             Console.ReadKey();
 
