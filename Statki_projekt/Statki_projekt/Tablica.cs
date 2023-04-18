@@ -15,18 +15,36 @@ namespace Statki_projekt
             
             if(kierunek == 0)
             {
-                if (x - 1 >= 0 && y - 1 >= 0 && x <= 4 && y <= 4 && x+statek-1 <= 4)
+                if (x - 1 >= 0 && y - 1 >= 0 && x <= 4 && y <= 4 && x+statek-2 <= 4)
                 {
                     for (int i = 0; i < statek; i++)
                     {
                         plansza[y - 1, x - 1+i] = statek;
+                    }
+                    for (int i = -1; i <= statek; i++)
+                    {
+                        for (int j = -1; j < 2; j++)
+                        {
+                            if(y-1+j >= 0 && y-1+j <= 4 && x-1+i >= 0 && x-1+i <= 4)
+                            {
+                                if (plansza[y - 1 + j, x - 1 + i] == 0)
+                                    plansza[y - 1 + j, x - 1 + i] = -1;
+                            }
+                        }
                     }
                 }
                
             }
             else
             {
-
+                if (x - 1 >= 0 && y - 1 >= 0 && x <= 4 && y <= 4 && y + statek - 2 <= 4)
+                {
+                    for (int i = 0; i < statek; i++)
+                    {
+                        plansza[y - 1 + i, x - 1] = statek;
+                    }
+                    
+                }
             }
 
             //for (int i = 0; i < 6; i += 2)
