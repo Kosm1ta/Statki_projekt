@@ -10,7 +10,7 @@ namespace Statki_projekt
     internal class Statki
     {
         public int[,] statekwsp = new int[3,2];
-        int pionpoziom;
+        
         public Statki(int x, int y, int statek)
         {
             statekwsp[statek,0] = x;
