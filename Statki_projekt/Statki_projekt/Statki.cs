@@ -9,7 +9,7 @@ namespace Statki_projekt
 {
     internal class Statki
     {
-        public int[,] statekwsp = new int[3,6];
+        public int[,] statekwsp = new int[3,];
         int pionpoziom;
         public Statki()
         {
