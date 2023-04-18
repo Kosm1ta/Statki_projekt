@@ -43,7 +43,17 @@ namespace Statki_projekt
                     {
                         plansza[y - 1 + i, x - 1] = statek;
                     }
-                    
+                    for (int i = -1; i <= statek; i++)
+                    {
+                        for (int j = -1; j < 2; j++)
+                        {
+                            if (y - 1 + i >= 0 && y - 1 + i <= 4 && x - 1 + j >= 0 && x - 1 + j <= 4)
+                            {
+                                if (plansza[y - 1 + i, x - 1 + j] == 0)
+                                    plansza[y - 1 + i, x - 1 + j] = -1;
+                            }
+                        }
+                    }
                 }
             }
 
