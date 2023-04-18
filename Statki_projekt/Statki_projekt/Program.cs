@@ -30,17 +30,18 @@ namespace Statki_projekt
                     int y = int.Parse(Console.ReadLine());
 
                     if (i == 1)
-                        t.Dodaj(gracze[j].Plansza, x, y, i, 0, gracze[j]);
+                        t.Dodaj(gracze[j-1].Plansza, x, y, i, 0, gracze[j-1]);
                     else{
                         Console.WriteLine("Podaj kierunek:");
                         int kierunek = int.Parse(Console.ReadLine());
-                        t.Dodaj(gracze[j].Plansza, x, y, i, kierunek, gracze[j]);
+                        t.Dodaj(gracze[j - 1].Plansza, x, y, i, kierunek, gracze[j - 1]);
                     }
                     
                  Console.Clear();
-                t.pokaz(gracze[j].Plansza);
+                t.pokaz(gracze[j-1].Plansza);
                 }
-                
+                Console.Clear();
+
             }
 
             Console.Clear();
