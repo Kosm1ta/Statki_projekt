@@ -15,7 +15,7 @@ namespace Statki_projekt
             
             if(kierunek == 0)
             {
-                if (x - 1 >= 0 && y - 1 >= 0 && x <= 4 && y <= 4 && x+statek-2 <= 4)
+                if (x - 1 >= 0 && y - 1 >= 0 && x-1 <= 4 && y - 1 <= 4 && x+statek-2 <= 4)
                 {
                     for (int i = 0; i < statek; i++)
                     {
@@ -37,7 +37,7 @@ namespace Statki_projekt
             }
             else
             {
-                if (x - 1 >= 0 && y - 1 >= 0 && x <= 4 && y <= 4 && y + statek - 2 <= 4)
+                if (x - 1 >= 0 && y - 1 >= 0 && x-1 <= 4 && y-1 <= 4 && y + statek - 2 <= 4)
                 {
                     for (int i = 0; i < statek; i++)
                     {
@@ -57,28 +57,7 @@ namespace Statki_projekt
                 }
             }
 
-            //for (int i = 0; i < 6; i += 2)
-            //{
-            //    if(plansza[s.statekwsp[2, i] - 1, s.statekwsp[2, i + 1] - 1] != -1)
-            //         plansza[s.statekwsp[2, i] - 1, s.statekwsp[2, i + 1] - 1] = 1;
-
-            //}
-            //if (s.statekwsp[2, 1] != s.statekwsp[2, 3])
-            //{
-            //    for (int i = 0; i < 4; i += 2)
-            //    {
-            //        for (int a = -1; a <= 2; a++)
-            //        {
-            //            for (int j = -1; j < 2; j++)
-            //            {
-            //                if (plansza[s.statekwsp[2, i] - 1 + j, s.statekwsp[2, i] - 1 + a] == 0)
-            //                    plansza[s.statekwsp[2, i] - 1 + j, s.statekwsp[2, i] - 1 + a] = -1;
-            //            }
-            //        }
-
-            //    }
-
-            //}
+            
         }
             public void pokaz(int[,] plansza)
         {
