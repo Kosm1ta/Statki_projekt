@@ -37,15 +37,20 @@ namespace Statki_projekt
                         t.Dodaj(gracze[j - 1].Plansza, x, y, i, kierunek, gracze[j - 1]);
                     }
                     
+
                  Console.Clear();
+                    Console.WriteLine("Plansza gracza: " + j);
                 t.pokaz(gracze[j-1].Plansza);
                 }
+                Console.ReadKey();
                 Console.Clear();
 
             }
 
-            Console.Clear();
-            t.pokaz(gracze[0].Plansza);
+            
+           
+            t.strzal(gracze[1].Strzaly, gracze[0].Plansza);
+
             //t.strzal(u.strzaly, u.plansza, 0, 0);
             Console.ReadKey();
 

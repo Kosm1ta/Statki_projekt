@@ -84,17 +84,24 @@ namespace Statki_projekt
                 Console.WriteLine();
             }
         }
-        public void strzal(int[,] strzal, int[,] plansza,int x, int y)
+        public void strzal(int[,] strzal, int[,] plansza)
         {
-            if (strzal[x, y] == 0)
+            Console.WriteLine("Strzał: ");
+            Console.WriteLine("\nPodaj X:");
+            int x = int.Parse(Console.ReadLine());
+            Console.WriteLine("Podaj Y:");
+            int y = int.Parse(Console.ReadLine());
+            if (strzal[y-1, x-1] == 0)
             {
-                if (plansza[x, y] != 0)
+                if (plansza[y-1, x - 1] != 0 && plansza[y - 1, x - 1] != -1)
                 {
-                    strzal[x, y] = 1;
+                    strzal[y-1,x - 1] = 1;
                     Console.WriteLine("trafiony");
                 }
-                
+                else
+                    Console.WriteLine("Pudło");
             }
         }
+        
     }
 }
