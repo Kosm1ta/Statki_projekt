@@ -18,38 +18,18 @@ namespace Statki_projekt
             Tablica t = new Tablica();
             
             List<Uzytkownicy> gracze = new List<Uzytkownicy>() { new Uzytkownicy(new int[5, 5], new int[5, 5], new List<Statki>(), new int[] {0,0,0}), new Uzytkownicy(new int[5, 5], new int[5, 5], new List<Statki>(), new int[] { 0, 0, 0 }) };
+
+            int i = 1;
+            int j = 0;
+            bool wygrana = false;
+
             
-            
-            for(int j = 1; j <= 2; j++) { 
-                for (int i = 1; i <= 3; i++) {
-                    Console.WriteLine("Gracz: " + j);
-                    Console.WriteLine("\nStatek: " + i);
-                    Console.WriteLine("Podaj x:");
-                    int x = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Podaj y:");
-                    int y = int.Parse(Console.ReadLine());
-
-                    if (i == 1)
-                        t.Dodaj(gracze[j-1].Plansza, x, y, i, 0, gracze[j-1]);
-                    else{
-                        Console.WriteLine("Podaj kierunek:");
-                        int kierunek = int.Parse(Console.ReadLine());
-                        t.Dodaj(gracze[j - 1].Plansza, x, y, i, kierunek, gracze[j - 1]);
-                    }
-                    
-
-                 Console.Clear();
-                    Console.WriteLine("Plansza gracza: " + j);
-                t.pokaz(gracze[j-1].Plansza);
-                }
-                Console.ReadKey();
-                Console.Clear();
-
+            t.Start(gracze);
+            while (!wygrana)
+            {
+                t.strzal(gracze[i], gracze[j]);
             }
 
-            
-           
-            t.strzal(gracze[1], gracze[0]);
 
             //t.strzal(u.strzaly, u.plansza, 0, 0);
             Console.ReadKey();
