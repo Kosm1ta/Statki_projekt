@@ -17,7 +17,7 @@ namespace Statki_projekt
 
             Tablica t = new Tablica();
             
-            List<Uzytkownicy> gracze = new List<Uzytkownicy>() { new Uzytkownicy(new int[5, 5], new int[5, 5], new List<Statki>()), new Uzytkownicy(new int[5, 5], new int[5, 5], new List<Statki>())};
+            List<Uzytkownicy> gracze = new List<Uzytkownicy>() { new Uzytkownicy(new int[5, 5], new int[5, 5], new List<Statki>(), new int[] {0,0,0}), new Uzytkownicy(new int[5, 5], new int[5, 5], new List<Statki>(), new int[] { 0, 0, 0 }) };
             
             
             for(int j = 1; j <= 2; j++) { 
@@ -49,7 +49,7 @@ namespace Statki_projekt
 
             
            
-            t.strzal(gracze[1].Strzaly, gracze[0].Plansza);
+            t.strzal(gracze[1], gracze[0]);
 
             //t.strzal(u.strzaly, u.plansza, 0, 0);
             Console.ReadKey();
