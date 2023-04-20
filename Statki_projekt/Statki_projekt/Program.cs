@@ -41,12 +41,14 @@ namespace Statki_projekt
                         i = 1;
                         j = 0;
                     }
+                    Console.ReadKey();
+                    Console.Clear();
                     t.Strzal(gracze[i], gracze[j]);
                     wygrana = t.Wygrana(gracze[i]);
 
                 }
-                Console.Clear();
-                Console.WriteLine("Wygrał gracz: " + gracze[i].ID);
+                t.Pokaz(gracze[i].Strzaly);
+                Console.WriteLine("\nWygrał gracz: " + gracze[i].ID);
                 Console.ReadKey();
 
             }

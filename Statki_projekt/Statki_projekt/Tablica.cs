@@ -19,8 +19,8 @@ namespace Statki_projekt
                 {
                     if (x - 1 >= 0 && y - 1 >= 0 && x - 1 <= 4 && y - 1 <= 4 && x + statek - 2 <= 4)
                     {
-                        if (plansza[y - 1, x - 1] == 0 && plansza[y - 1, x + statek - 2] == 0)
-                        {
+                        
+                        
 
 
                             for (int i = 0; i < statek; i++)
@@ -38,19 +38,19 @@ namespace Statki_projekt
                                     }
                                 }
                             }
-                        }
-                        //
+                        
+                        
                         u.Statki.Add(new Statki(x, y, kierunek));
                     }
-                    //
+                    
 
                 }
                 else
                 {
                     if (x - 1 >= 0 && y - 1 >= 0 && x - 1 <= 4 && y - 1 <= 4 && y + statek - 2 <= 4)
                     {
-                        if (plansza[y - 1, x - 1] == 0 && plansza[y + statek - 2, x - 1] == 0)
-                        {
+                       
+                        
 
 
                             for (int i = 0; i < statek; i++)
@@ -68,11 +68,11 @@ namespace Statki_projekt
                                     }
                                 }
                             }
-                        }
-                        //
+                        
+                        
                         u.Statki.Add(new Statki(x, y, kierunek));
                     }
-                    //
+                    
                 }
             }
             catch (Exception e)
@@ -111,6 +111,8 @@ namespace Statki_projekt
                                 else
                                 {
                                     Console.WriteLine("Podaj kierunek:");
+                                    Console.WriteLine("0. Poziomo");
+                                    Console.WriteLine("1. Pionowo");
                                     kierunek = int.Parse(Console.ReadLine());
                                     
                                     if ((i == 2 && kierunek == 0 && x > 4) || (i == 2 && kierunek == 1 && y > 4))
@@ -185,13 +187,15 @@ namespace Statki_projekt
                     {
                         try
                         {
+                            
+                            Pokaz(strzal.Strzaly);
                             trafiony = false;
                             Console.WriteLine("\nStrzał gracza " + strzal.ID + ":");
                             Console.WriteLine("\nPodaj X:");
                             int x = int.Parse(Console.ReadLine());
                             Console.WriteLine("Podaj Y:");
                             int y = int.Parse(Console.ReadLine());
-
+                            Console.Clear();
                             if (x < 1 || x > 5 || y < 1 || y > 5)
                                 throw new Blad("Strzeliłeś poza planszę!!!");
                             if (strzal.Strzaly[y - 1, x - 1] == 0)
@@ -200,12 +204,17 @@ namespace Statki_projekt
                                 {
                                     strzal.Strzaly[y - 1, x - 1] = 1;
                                     strzal.StatkiTrafione[plansza.Plansza[y - 1, x - 1] - 1]++;
-                                    Console.WriteLine("trafiony");
+                                    Console.WriteLine("\ntrafiony");
                                     trafiony = true;
 
                                 }
                                 else
+                                {
+                                    strzal.Strzaly[y - 1, x - 1] = -1;
                                     Console.WriteLine("Pudło");
+
+                                }
+                                    
                             }
                             else
                             {
@@ -233,7 +242,7 @@ namespace Statki_projekt
                         }
                         catch (Exception e) { Console.WriteLine(e.Message); }
                     }
-                    Pokaz(strzal.Strzaly);
+                    
                 } while (trafiony && !Wygrana(strzal));
             }catch(Exception ex) { Console.WriteLine(ex.Message); }
         }
