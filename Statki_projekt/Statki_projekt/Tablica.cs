@@ -89,39 +89,42 @@ namespace Statki_projekt
                     {
                         if (i == 1)
                             Console.WriteLine("\nGracz: " + j);
-                        bool nieudane = true;
-                        while(nieudane){
-                            Console.WriteLine("\nStatek: " + i);
-                            Console.WriteLine("Podaj x:");
-                            int x = int.Parse(Console.ReadLine());
-                            Console.WriteLine("Podaj y:");
-                            int y = int.Parse(Console.ReadLine());
+                        //bool nieudane = true;
+                        //while(nieudane){
+                            try
+                            {
+                                Console.WriteLine("\nStatek: " + i);
+                                Console.WriteLine("Podaj x:");
+                                int x = int.Parse(Console.ReadLine());
+                                Console.WriteLine("Podaj y:");
+                                int y = int.Parse(Console.ReadLine());
 
-                            if (x > 5 || x < 0 || y > 5 || y < 0)
-                            {
-                                throw new Blad("Podałeś złe wartości!!!");
-                            }
-                            int kierunek = 5;
-                            if (i == 1)
-                                Dodaj(gracze[j - 1].Plansza, x, y, i, 0, gracze[j - 1]);
-                            else
-                            {
-                                Console.WriteLine("Podaj kierunek:");
-                                kierunek = int.Parse(Console.ReadLine());
-                                Dodaj(gracze[j - 1].Plansza, x, y, i, kierunek, gracze[j - 1]);
-                            }
-                            if (i == 2 && kierunek == 0 && x > 4 || i == 2 && kierunek == 0 && x < 0 || i == 2 && kierunek == 1 && y > 4 || i == 2 && kierunek == 1 && y < 0)
-                            {
-                                throw new Blad("Podałeś złe liczby!!!");
-                            }
-                            if (i == 3 && kierunek == 0 && x > 3 || i == 3 && kierunek == 0 && x < 0 || i == 3 && kierunek == 1 && y > 3 || i == 3 && kierunek == 1 && y < 0)
-                            {
-                                throw new Blad("Podałeś złe liczby!!!");
-                            } 
-                        }
+                                if (x > 5 || x < 0 || y > 5 || y < 0)
+                                {
+                                    throw new Blad("Podałeś złe wartości!!!");
+                                }
+                                int kierunek = 5;
+                                if (i == 1)
+                                    Dodaj(gracze[j - 1].Plansza, x, y, i, 0, gracze[j - 1]);
+                                else
+                                {
+                                    Console.WriteLine("Podaj kierunek:");
+                                    kierunek = int.Parse(Console.ReadLine());
+                                    Dodaj(gracze[j - 1].Plansza, x, y, i, kierunek, gracze[j - 1]);
+                                }
+                                if (i == 2 && kierunek == 0 && x > 4 || i == 2 && kierunek == 1 && y > 4)
+                                {
+                                    throw new Blad("Podałeś złe liczby!!!");
+                                }
+                                if (i == 3 && kierunek == 0 && x > 3 || i == 3 && kierunek == 1 && y > 3)
+                                {
+                                    throw new Blad("Podałeś złe liczby!!!");
+                                }
+                            }catch (Exception e) { Console.WriteLine(e.Message); }
+                        //}
                         Console.Clear();
                         Console.WriteLine("Plansza gracza: " + j);
-                        pokaz(gracze[j - 1].Plansza);
+                        Pokaz(gracze[j - 1].Plansza);
                     }
                     Console.ReadKey();
                     Console.Clear();
@@ -129,7 +132,7 @@ namespace Statki_projekt
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
-        public void pokaz(int[,] plansza)
+        public void Pokaz(int[,] plansza)
         {
             try
             {
@@ -156,7 +159,7 @@ namespace Statki_projekt
                 }
             }catch (Exception ex) { Console.WriteLine(ex.Message); }
         }
-        public void strzal(Uzytkownicy strzal, Uzytkownicy plansza)
+        public void Strzal(Uzytkownicy strzal, Uzytkownicy plansza)
         {
             try
             {
@@ -202,7 +205,7 @@ namespace Statki_projekt
                         Oznaczenie(3, plansza, strzal);
                     }
 
-                    pokaz(strzal.Strzaly);
+                    Pokaz(strzal.Strzaly);
                 } while (trafiony && !Wygrana(strzal));
             }catch(Exception ex) { Console.WriteLine(ex.Message); }
         }
