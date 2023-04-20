@@ -14,7 +14,9 @@ namespace Statki_projekt
     {
         static void Main(string[] args)
         {
-            
+            try
+            {
+
                 Tablica t = new Tablica();
 
 
@@ -39,7 +41,7 @@ namespace Statki_projekt
                         i = 1;
                         j = 0;
                     }
-                    t.strzal(gracze[i], gracze[j]);
+                    t.Strzal(gracze[i], gracze[j]);
                     wygrana = t.Wygrana(gracze[i]);
 
                 }
@@ -49,7 +51,6 @@ namespace Statki_projekt
 
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
-
         }
     }
 }
