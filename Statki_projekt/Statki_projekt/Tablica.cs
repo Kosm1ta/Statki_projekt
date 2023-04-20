@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -89,8 +90,9 @@ namespace Statki_projekt
                     {
                         if (i == 1)
                             Console.WriteLine("\nGracz: " + j);
-                        //bool nieudane = true;
-                        //while(nieudane){
+                        bool nieudane = true;
+                        while (nieudane)
+                        {
                             try
                             {
                                 Console.WriteLine("\nStatek: " + i);
@@ -99,7 +101,7 @@ namespace Statki_projekt
                                 Console.WriteLine("Podaj y:");
                                 int y = int.Parse(Console.ReadLine());
 
-                                if (x > 5 || x < 0 || y > 5 || y < 0)
+                                if (x > 5 || x < 1 || y > 5 || y < 1)
                                 {
                                     throw new Blad("Podałeś złe wartości!!!");
                                 }
@@ -110,24 +112,36 @@ namespace Statki_projekt
                                 {
                                     Console.WriteLine("Podaj kierunek:");
                                     kierunek = int.Parse(Console.ReadLine());
+                                    
+                                    if ((i == 2 && kierunek == 0 && x > 4) || (i == 2 && kierunek == 1 && y > 4))
+                                    {
+                                        throw new Blad("Podałeś złe liczby!!!");
+                                    }
+                                    if ((i == 3 && kierunek == 0 && x > 3) || (i == 3 && kierunek == 1 && y > 3))
+                                    {
+                                        throw new Blad("Podałeś złe liczby!!!");
+                                    }
+                                    if (kierunek == 1 && gracze[j-1].Plansza[y - 1, x - 1] != 0 && gracze[j - 1].Plansza[y + i - 2, x - 1] != 0)
+                                        throw new Blad("Statki się stykają lub na siebie nachodzą!!!");
+                                    if (kierunek == 0 && gracze[j-1].Plansza[y - 1, x - 1] != 0 && gracze[j - 1].Plansza[y - 1, x + i - 2] != 0)
+                                        throw new Blad("Statki się stykają lub na siebie nachodzą!!!");
                                     Dodaj(gracze[j - 1].Plansza, x, y, i, kierunek, gracze[j - 1]);
                                 }
-                                if (i == 2 && kierunek == 0 && x > 4 || i == 2 && kierunek == 1 && y > 4)
-                                {
-                                    throw new Blad("Podałeś złe liczby!!!");
-                                }
-                                if (i == 3 && kierunek == 0 && x > 3 || i == 3 && kierunek == 1 && y > 3)
-                                {
-                                    throw new Blad("Podałeś złe liczby!!!");
-                                }
-                            }catch (Exception e) { Console.WriteLine(e.Message); }
-                        //}
+                                
+                                nieudane = false;
+                            }
+                            catch (Exception e) 
+                            { 
+                                Console.WriteLine(e.Message); 
+                            }
+                        }
                         Console.Clear();
                         Console.WriteLine("Plansza gracza: " + j);
                         Pokaz(gracze[j - 1].Plansza);
                     }
                     Console.ReadKey();
                     Console.Clear();
+                    Console.ReadKey();
                 }
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
@@ -166,45 +180,59 @@ namespace Statki_projekt
                 bool trafiony = false;
                 do
                 {
-
-                    trafiony = false;
-                    Console.WriteLine("\nStrzał gracza " + strzal.ID + ":");
-                    Console.WriteLine("\nPodaj X:");
-                    int x = int.Parse(Console.ReadLine());
-                    Console.WriteLine("Podaj Y:");
-                    int y = int.Parse(Console.ReadLine());
-                    if (strzal.Strzaly[y - 1, x - 1] == 0)
+                    bool zly = true;
+                    while (zly)
                     {
-                        if (plansza.Plansza[y - 1, x - 1] != 0 && plansza.Plansza[y - 1, x - 1] != -2)
+                        try
                         {
-                            strzal.Strzaly[y - 1, x - 1] = 1;
-                            strzal.StatkiTrafione[plansza.Plansza[y - 1, x - 1] - 1]++;
-                            Console.WriteLine("trafiony");
-                            trafiony = true;
+                            trafiony = false;
+                            Console.WriteLine("\nStrzał gracza " + strzal.ID + ":");
+                            Console.WriteLine("\nPodaj X:");
+                            int x = int.Parse(Console.ReadLine());
+                            Console.WriteLine("Podaj Y:");
+                            int y = int.Parse(Console.ReadLine());
 
+                            if (x < 1 || x > 5 || y < 1 || y > 5)
+                                throw new Blad("Strzeliłeś poza planszę!!!");
+                            if (strzal.Strzaly[y - 1, x - 1] == 0)
+                            {
+                                if (plansza.Plansza[y - 1, x - 1] != 0 && plansza.Plansza[y - 1, x - 1] != -2)
+                                {
+                                    strzal.Strzaly[y - 1, x - 1] = 1;
+                                    strzal.StatkiTrafione[plansza.Plansza[y - 1, x - 1] - 1]++;
+                                    Console.WriteLine("trafiony");
+                                    trafiony = true;
+
+                                }
+                                else
+                                    Console.WriteLine("Pudło");
+                            }
+                            else
+                            {
+                                throw new Blad("Strzeliłeś ponownie w to samo miejsce!!!");
+                            }
+                            if (strzal.StatkiTrafione[0] == 1)
+                            {
+                                Console.WriteLine("Zatopiony!");
+                                strzal.StatkiTrafione[0]++;
+                                Oznaczenie(1, plansza, strzal);
+                            }
+                            if (strzal.StatkiTrafione[1] == 2)
+                            {
+                                Console.WriteLine("Zatopiony!");
+                                strzal.StatkiTrafione[1]++;
+                                Oznaczenie(2, plansza, strzal);
+                            }
+                            if (strzal.StatkiTrafione[2] == 3)
+                            {
+                                Console.WriteLine("Zatopiony!");
+                                strzal.StatkiTrafione[2]++;
+                                Oznaczenie(3, plansza, strzal);
+                            }
+                            zly = false;
                         }
-                        else
-                            Console.WriteLine("Pudło");
+                        catch (Exception e) { Console.WriteLine(e.Message); }
                     }
-                    if (strzal.StatkiTrafione[0] == 1)
-                    {
-                        Console.WriteLine("Zatopiony!");
-                        strzal.StatkiTrafione[0]++;
-                        Oznaczenie(1, plansza, strzal);
-                    }
-                    if (strzal.StatkiTrafione[1] == 2)
-                    {
-                        Console.WriteLine("Zatopiony!");
-                        strzal.StatkiTrafione[1]++;
-                        Oznaczenie(2, plansza, strzal);
-                    }
-                    if (strzal.StatkiTrafione[2] == 3)
-                    {
-                        Console.WriteLine("Zatopiony!");
-                        strzal.StatkiTrafione[2]++;
-                        Oznaczenie(3, plansza, strzal);
-                    }
-
                     Pokaz(strzal.Strzaly);
                 } while (trafiony && !Wygrana(strzal));
             }catch(Exception ex) { Console.WriteLine(ex.Message); }
