@@ -14,13 +14,19 @@ namespace Statki_projekt
         public int[] StatkiTrafione;
         public int ID;
        
-        public Uzytkownicy(int id, int[,] plansza, int[,] strzaly, List<Statki> statki, int[] statkitrafiione) {
-            ID = id;
-            Plansza = plansza;
-            Strzaly = strzaly;
-            Statki = statki;
-            StatkiTrafione = statkitrafiione;
+
+        public Uzytkownicy(int[,] plansza, int[,] strzaly, List<Statki> statki, int[] statkitrafiione) {
+            try
+            {
+                Plansza = plansza;
+                Strzaly = strzaly;
+                Statki = statki;
+                StatkiTrafione = statkitrafiione;
+            }
+            catch (Exception e) 
+            {
+                Console.WriteLine(e.Message);
+            }
         }
-        
     }
 }

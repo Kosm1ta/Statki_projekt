@@ -14,16 +14,19 @@ namespace Statki_projekt
     {
         static void Main(string[] args)
         {
-
-            Tablica t = new Tablica();
+            try
+            {
+                Tablica t = new Tablica();
             
+
             List<Uzytkownicy> gracze = new List<Uzytkownicy>() { new Uzytkownicy(1,new int[5, 5], new int[5, 5], new List<Statki>(), new int[] {0,0,0}), new Uzytkownicy(2,new int[5, 5], new int[5, 5], new List<Statki>(), new int[] { 0, 0, 0 }) };
 
-            int i = 1;
-            int j = 0;
-            bool wygrana = false;
 
-            
+                int i = 1;
+                int j = 0;
+                bool wygrana = false;
+
+
             t.Start(gracze);
             while (!wygrana)
             {
