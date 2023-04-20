@@ -12,8 +12,9 @@ namespace Statki_projekt
         public List<Statki> Statki;
         public int[,] Strzaly;
         public int[] StatkiTrafione;
-        
+        public int ID;
        
+
         public Uzytkownicy(int[,] plansza, int[,] strzaly, List<Statki> statki, int[] statkitrafiione) {
             try
             {
