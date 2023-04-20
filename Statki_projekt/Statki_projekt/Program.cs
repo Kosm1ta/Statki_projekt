@@ -16,9 +16,9 @@ namespace Statki_projekt
         {
             
                 Tablica t = new Tablica();
-            
 
-            List<Uzytkownicy> gracze = new List<Uzytkownicy>() { new Uzytkownicy(1,new int[5, 5], new int[5, 5], new List<Statki>(), new int[] {0,0,0}), new Uzytkownicy(2,new int[5, 5], new int[5, 5], new List<Statki>(), new int[] { 0, 0, 0 }) };
+
+                List<Uzytkownicy> gracze = new List<Uzytkownicy>() { new Uzytkownicy(1, new int[5, 5], new int[5, 5], new List<Statki>(), new int[] { 0, 0, 0 }), new Uzytkownicy(2, new int[5, 5], new int[5, 5], new List<Statki>(), new int[] { 0, 0, 0 }) };
 
 
                 int i = 1;
@@ -26,28 +26,30 @@ namespace Statki_projekt
                 bool wygrana = false;
 
 
-            t.Start(gracze);
-            while (!wygrana)
-            {
-                if (i == 1)
+                t.Start(gracze);
+                while (!wygrana)
                 {
-                    i = 0;
-                    j = 1;
+                    if (i == 1)
+                    {
+                        i = 0;
+                        j = 1;
+                    }
+                    else
+                    {
+                        i = 1;
+                        j = 0;
+                    }
+                    t.strzal(gracze[i], gracze[j]);
+                    wygrana = t.Wygrana(gracze[i]);
+
                 }
-                else
-                {
-                    i = 1;
-                    j = 0;
-                }
-                t.strzal(gracze[i], gracze[j]);
-                wygrana = t.Wygrana(gracze[i]);
-                
+                Console.Clear();
+                Console.WriteLine("Wygrał gracz: " + gracze[i].ID);
+                Console.ReadKey();
+
             }
-            Console.Clear();
-            Console.WriteLine("Wygrał gracz: " + gracze[i].ID);
-            Console.ReadKey();
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
 
         }
-        
     }
 }
