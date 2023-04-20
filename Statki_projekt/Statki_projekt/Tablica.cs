@@ -100,6 +100,7 @@ namespace Statki_projekt
                                 int x = int.Parse(Console.ReadLine());
                                 Console.WriteLine("Podaj y:");
                                 int y = int.Parse(Console.ReadLine());
+                                
 
                                 if (x > 5 || x < 1 || y > 5 || y < 1)
                                 {
@@ -123,9 +124,10 @@ namespace Statki_projekt
                                     {
                                         throw new Blad("Podałeś złe liczby!!!");
                                     }
-                                    if (kierunek == 1 && gracze[j-1].Plansza[y - 1, x - 1] != 0 && gracze[j - 1].Plansza[y + i - 2, x - 1] != 0)
+                                    
+                                    if (kierunek == 1 && (gracze[j-1].Plansza[y - 1, x - 1] != 0 || gracze[j-1].Plansza[y + i - 2, x - 1] != 0))
                                         throw new Blad("Statki się stykają lub na siebie nachodzą!!!");
-                                    if (kierunek == 0 && gracze[j-1].Plansza[y - 1, x - 1] != 0 && gracze[j - 1].Plansza[y - 1, x + i - 2] != 0)
+                                    if (kierunek == 0 && (gracze[j-1].Plansza[y - 1, x - 1] != 0 || gracze[j-1].Plansza[y - 1, x + i - 2] != 0))
                                         throw new Blad("Statki się stykają lub na siebie nachodzą!!!");
                                     Dodaj(gracze[j - 1].Plansza, x, y, i, kierunek, gracze[j - 1]);
                                 }
