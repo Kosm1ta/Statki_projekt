@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -89,8 +90,9 @@ namespace Statki_projekt
                     {
                         if (i == 1)
                             Console.WriteLine("\nGracz: " + j);
-                        //bool nieudane = true;
-                        //while(nieudane){
+                        bool nieudane = true;
+                        while (nieudane)
+                        {
                             try
                             {
                                 Console.WriteLine("\nStatek: " + i);
@@ -110,24 +112,36 @@ namespace Statki_projekt
                                 {
                                     Console.WriteLine("Podaj kierunek:");
                                     kierunek = int.Parse(Console.ReadLine());
+                                    
+                                    if ((i == 2 && kierunek == 0 && x > 4) || (i == 2 && kierunek == 1 && y > 4))
+                                    {
+                                        throw new Blad("Podałeś złe liczby!!!");
+                                    }
+                                    if ((i == 3 && kierunek == 0 && x > 3) || (i == 3 && kierunek == 1 && y > 3))
+                                    {
+                                        throw new Blad("Podałeś złe liczby!!!");
+                                    }
+                                    if (kierunek == 1 && gracze[j-1].Plansza[y - 1, x - 1] != 0 && gracze[j - 1].Plansza[y + i - 2, x - 1] != 0)
+                                        throw new Blad("Statki się stykają lub na siebie nachodzą!!!");
+                                    if (kierunek == 0 && gracze[j-1].Plansza[y - 1, x - 1] != 0 && gracze[j - 1].Plansza[y - 1, x + i - 2] != 0)
+                                        throw new Blad("Statki się stykają lub na siebie nachodzą!!!");
                                     Dodaj(gracze[j - 1].Plansza, x, y, i, kierunek, gracze[j - 1]);
                                 }
-                                if (i == 2 && kierunek == 0 && x > 4 || i == 2 && kierunek == 1 && y > 4)
-                                {
-                                    throw new Blad("Podałeś złe liczby!!!");
-                                }
-                                if (i == 3 && kierunek == 0 && x > 3 || i == 3 && kierunek == 1 && y > 3)
-                                {
-                                    throw new Blad("Podałeś złe liczby!!!");
-                                }
-                            }catch (Exception e) { Console.WriteLine(e.Message); }
-                        //}
+                                
+                                nieudane = false;
+                            }
+                            catch (Exception e) 
+                            { 
+                                Console.WriteLine(e.Message); 
+                            }
+                        }
                         Console.Clear();
                         Console.WriteLine("Plansza gracza: " + j);
                         Pokaz(gracze[j - 1].Plansza);
                     }
                     Console.ReadKey();
                     Console.Clear();
+                    Console.ReadKey();
                 }
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
