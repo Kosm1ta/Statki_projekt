@@ -15,11 +15,17 @@ namespace Statki_projekt
         
        
         public Uzytkownicy(int[,] plansza, int[,] strzaly, List<Statki> statki, int[] statkitrafiione) {
-            Plansza = plansza;
-            Strzaly = strzaly;
-            Statki = statki;
-            StatkiTrafione = statkitrafiione;
+            try
+            {
+                Plansza = plansza;
+                Strzaly = strzaly;
+                Statki = statki;
+                StatkiTrafione = statkitrafiione;
+            }
+            catch (Exception e) 
+            {
+                Console.WriteLine(e.Message);
+            }
         }
-        
     }
 }
