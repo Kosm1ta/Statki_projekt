@@ -8,13 +8,18 @@ namespace Statki_projekt
 {
     internal class Uzytkownicy
     {
-        public int[,] plansza = new int[5,5];
-        public int[,] plansza2 = new int[5, 5];
-
-        public int[,] strzaly = new int[5, 5];
-        public int[,] strzaly2 = new int[5, 5];
+        public int[,] Plansza;
+        public List<Statki> Statki;
+        public int[,] Strzaly;
+        public int[] StatkiTrafione;
+        
        
-        public Uzytkownicy() { }
+        public Uzytkownicy(int[,] plansza, int[,] strzaly, List<Statki> statki, int[] statkitrafiione) {
+            Plansza = plansza;
+            Strzaly = strzaly;
+            Statki = statki;
+            StatkiTrafione = statkitrafiione;
+        }
         
     }
 }

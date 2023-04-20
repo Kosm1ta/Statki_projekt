@@ -16,30 +16,41 @@ namespace Statki_projekt
         {
 
             Tablica t = new Tablica();
-            Uzytkownicy u = new Uzytkownicy();
+            
+            List<Uzytkownicy> gracze = new List<Uzytkownicy>() { new Uzytkownicy(new int[5, 5], new int[5, 5], new List<Statki>(), new int[] {0,0,0}), new Uzytkownicy(new int[5, 5], new int[5, 5], new List<Statki>(), new int[] { 0, 0, 0 }) };
 
-            t.Dodaj(u.plansza, new Statki());
-            t.pokaz(u.plansza);
-            t.strzal(u.strzaly, u.plansza, 0, 0);
+            int i = 1;
+            int j = 0;
+            bool wygrana = false;
+
+            
+            t.Start(gracze);
+            while (!wygrana)
+            {
+                t.strzal(gracze[i], gracze[j]);
+            }
+
+
+            //t.strzal(u.strzaly, u.plansza, 0, 0);
             Console.ReadKey();
 
 
-            Statki statki = new Statki();
+           
 
-            for (int i = 0; i < 2; i++) 
-            {
-                Console.Write(statki.statekwsp[0,i] + ", ");
-            }
-            Console.WriteLine();
-            for (int i = 0; i < 4; i++)
-            {
-                Console.Write(statki.statekwsp[1, i] + ", ");
-            }
-            Console.WriteLine();
-            for (int i = 0; i < 6; i++)
-            {
-                Console.Write(statki.statekwsp[2, i] + ", ");
-            }
+            //for (int i = 0; i < 2; i++) 
+            //{
+            //    Console.Write(statki.statekwsp[0,i] + ", ");
+            //}
+            //Console.WriteLine();
+            //for (int i = 0; i < 4; i++)
+            //{
+            //    Console.Write(statki.statekwsp[1, i] + ", ");
+            //}
+            //Console.WriteLine();
+            //for (int i = 0; i < 6; i++)
+            //{
+            //    Console.Write(statki.statekwsp[2, i] + ", ");
+            //}
             Console.WriteLine();
 
             Console.ReadKey();
