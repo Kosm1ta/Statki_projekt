@@ -14,8 +14,7 @@ namespace Statki_projekt
     {
         static void Main(string[] args)
         {
-            try
-            {
+            
                 Tablica t = new Tablica();
             
 
