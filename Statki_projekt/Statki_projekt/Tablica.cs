@@ -17,9 +17,7 @@ namespace Statki_projekt
             {
                 if (kierunek == 0)
                 {
-                    if (x - 1 >= 0 && y - 1 >= 0 && x - 1 <= 4 && y - 1 <= 4 && x + statek - 2 <= 4)
-                    {
-                        
+                     
                         
 
 
@@ -41,14 +39,13 @@ namespace Statki_projekt
                         
                         
                         u.Statki.Add(new Statki(x, y, kierunek));
-                    }
+                    
                     
 
                 }
                 else
                 {
-                    if (x - 1 >= 0 && y - 1 >= 0 && x - 1 <= 4 && y - 1 <= 4 && y + statek - 2 <= 4)
-                    {
+                    
                        
                         
 
@@ -71,7 +68,7 @@ namespace Statki_projekt
                         
                         
                         u.Statki.Add(new Statki(x, y, kierunek));
-                    }
+                    
                     
                 }
             }
